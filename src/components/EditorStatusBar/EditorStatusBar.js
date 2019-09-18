@@ -3,45 +3,45 @@
  * need the same info :/ I should create a shared "root" component with slots
  * for the stuff that is variant.
  */
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
-import { box } from 'react-icons-kit/feather/box';
-import { codepen } from 'react-icons-kit/feather/codepen';
-import { globe } from 'react-icons-kit/feather/globe';
-import { volumeX as volumeMinIcon } from 'react-icons-kit/feather/volumeX';
-import { volume2 as volumeMaxIcon } from 'react-icons-kit/feather/volume2';
-import { fastForward as playbackSpeedMaxIcon } from 'react-icons-kit/feather/fastForward';
-import { music as playbackSpeedMinIcon } from 'react-icons-kit/feather/music';
-import { bell as tickOnIcon } from 'react-icons-kit/feather/bell';
-import { bellOff as tickOffIcon } from 'react-icons-kit/feather/bellOff';
-import { minimize2 as distanceCloseIcon } from 'react-icons-kit/feather/minimize2';
-import { maximize2 as distanceFarIcon } from 'react-icons-kit/feather/maximize2';
-import { layers as densityIcon } from 'react-icons-kit/feather/layers';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import { box } from "react-icons-kit/feather/box";
+import { codepen } from "react-icons-kit/feather/codepen";
+import { globe } from "react-icons-kit/feather/globe";
+import { volumeX as volumeMinIcon } from "react-icons-kit/feather/volumeX";
+import { volume2 as volumeMaxIcon } from "react-icons-kit/feather/volume2";
+import { fastForward as playbackSpeedMaxIcon } from "react-icons-kit/feather/fastForward";
+import { music as playbackSpeedMinIcon } from "react-icons-kit/feather/music";
+import { bell as tickOnIcon } from "react-icons-kit/feather/bell";
+import { bellOff as tickOffIcon } from "react-icons-kit/feather/bellOff";
+import { minimize2 as distanceCloseIcon } from "react-icons-kit/feather/minimize2";
+import { maximize2 as distanceFarIcon } from "react-icons-kit/feather/maximize2";
+import { layers as densityIcon } from "react-icons-kit/feather/layers";
 
-import * as actions from '../../actions';
-import { COLORS, UNIT } from '../../constants';
-import { roundTo } from '../../utils';
+import * as actions from "../../actions";
+import { COLORS, UNIT } from "../../constants";
+import { roundTo } from "../../utils";
 import {
   getNumOfBlocks,
   getNumOfMines,
   getNumOfObstacles,
-  getNoteDensity,
-} from '../../reducers/editor-entities.reducer/notes-view.reducer';
+  getNoteDensity
+} from "../../reducers/editor-entities.reducer/notes-view.reducer";
 import {
   getIsLoading,
   getPlaybackRate,
   getBeatDepth,
   getVolume,
-  getPlayNoteTick,
-} from '../../reducers/navigation.reducer';
+  getPlayNoteTick
+} from "../../reducers/navigation.reducer";
 
-import Spacer from '../Spacer';
+import Spacer from "../Spacer";
 
-import CountIndicator from './CountIndicator';
-import SliderGroup from './SliderGroup';
-import Toggle from './Toggle';
+import CountIndicator from "./CountIndicator";
+import SliderGroup from "./SliderGroup";
+import Toggle from "./Toggle";
 
 const pluralize = (num, string) => {
   const noun = num === 1 ? string : `${string}s`;
@@ -64,7 +64,7 @@ const EditorStatusBar = ({
   updateBeatDepth,
   updateVolume,
   toggleNoteTick,
-  location,
+  location
 }) => {
   const isNotesView = !!location.pathname.match(/\/notes$/);
 
@@ -76,19 +76,19 @@ const EditorStatusBar = ({
       <>
         <CountIndicator
           num={numOfBlocks}
-          label={pluralize(numOfBlocks, 'block')}
+          label={pluralize(numOfBlocks, "block")}
           icon={box}
         />
         <Spacer size={UNIT * 2} />
         <CountIndicator
           num={numOfMines}
-          label={pluralize(numOfBlocks, 'mine')}
+          label={pluralize(numOfBlocks, "mine")}
           icon={globe}
         />
         <Spacer size={UNIT * 2} />
         <CountIndicator
           num={numOfObstacles}
-          label={pluralize(numOfBlocks, 'obstacle')}
+          label={pluralize(numOfBlocks, "obstacle")}
           icon={codepen}
         />
         <Spacer size={UNIT * 6} />
@@ -224,7 +224,7 @@ const mapStateToProps = state => {
     numOfBlocks: getNumOfBlocks(state),
     numOfMines: getNumOfMines(state),
     numOfObstacles: getNumOfObstacles(state),
-    noteDensity: getNoteDensity(state),
+    noteDensity: getNoteDensity(state)
   };
 };
 
@@ -232,7 +232,7 @@ const mapDispatchToProps = {
   updatePlaybackSpeed: actions.updatePlaybackSpeed,
   updateBeatDepth: actions.updateBeatDepth,
   updateVolume: actions.updateVolume,
-  toggleNoteTick: actions.toggleNoteTick,
+  toggleNoteTick: actions.toggleNoteTick
 };
 
 export default connect(
