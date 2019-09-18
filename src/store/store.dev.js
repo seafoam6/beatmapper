@@ -14,10 +14,11 @@ export default function configureStore(initialState) {
   const wrappedReducer = storage.reducer(rootReducer);
 
   let enhancers;
+  console.log('amIactive', DEVTOOLS_ENABLED_IN_DEV)
   if (DEVTOOLS_ENABLED_IN_DEV) {
     enhancers = compose(
       applyMiddleware(...middlewares),
-      DevTools.instrument()
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
   } else {
     enhancers = compose(applyMiddleware(...middlewares));
